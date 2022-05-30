@@ -20,13 +20,13 @@ wait = WebDriverWait(driver, 20)
 # Read data from excel
 excel_data = pandas.read_excel('Customer bulk email data.xlsx', sheet_name='Customers')
 
+# Locate search box through x_path
+search_box = '//*[@id="side"]/div[1]/div/label/div/div[2]'
 # Iterate excel rows till to finish
 for column in excel_data['Name'].tolist():
     # Assign customized message
     message = excel_data['Message'][0]
 
-    # Locate search box through x_path
-    search_box = '//*[@id="side"]/div[1]/div/label/div/div[2]'
     person_title = wait.until(lambda driver:driver.find_element_by_xpath(search_box))
 
     # Clear search box if any contact number is written in it
